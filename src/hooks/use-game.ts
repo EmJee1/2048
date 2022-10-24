@@ -19,7 +19,6 @@ const useGame = (columns: number) => {
   const [gameState, setGameState] = useState(generateInitialGameState(columns))
 
   useEffect(() => {
-    console.log('Saving game-state with value:', gameState)
     storeGameState(gameState)
   }, [gameState])
 
