@@ -1,10 +1,19 @@
+import { random } from 'lodash'
 import { GameState } from '../types'
 import { getRandomEmptyIndexFromGameState } from './arrays'
 
-// TODO: make value 90% -> 2, 10% -> 4
+export const getRandomCellValue = () => {
+  const percentage = random(1, 10)
+  if (percentage > 1) {
+    return 2
+  }
+
+  return 4
+}
+
 export const addRandomCellValueToGameState = (gameState: GameState) => {
   const updatedGameState = [...gameState]
   const cellToAdd = getRandomEmptyIndexFromGameState(gameState)
-  updatedGameState[cellToAdd] = 2
+  updatedGameState[cellToAdd] = getRandomCellValue()
   return updatedGameState
 }
