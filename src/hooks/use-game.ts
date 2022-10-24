@@ -5,15 +5,7 @@ import { moveGameState } from '../utils/move'
 import { generateInitialGameState } from '../utils/initial'
 import { isEqual } from 'lodash'
 import { storeGameState } from '../utils/persistent-storage'
-
-// TODO: move this to designated util file
-// TODO: make value 90% -> 2, 10% -> 4
-const addCellValue = (gameState: GameState) => {
-  const cellToAdd = getRandomEmptyIndexFromGameState(gameState)
-  const updatedGameState = [...gameState]
-  updatedGameState[cellToAdd] = 2
-  return updatedGameState
-}
+import { addRandomCellValueToGameState } from '../utils/cells'
 
 const useGame = (columns: number) => {
   const [gameState, setGameState] = useState(generateInitialGameState(columns))
@@ -29,7 +21,7 @@ const useGame = (columns: number) => {
       return
     }
 
-    setGameState(addCellValue(movedGameState))
+    setGameState(addRandomCellValueToGameState(movedGameState))
   }
 
   return {
