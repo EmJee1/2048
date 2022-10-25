@@ -26,9 +26,12 @@ const useGame = (columns: number) => {
     setGameState(addRandomCellValueToGameState(movedGameState))
   }
 
+  const restart = () => setGameState(generateInitialGameState(columns))
+
   return {
     gameState,
     move,
+    restart,
   }
 }
 

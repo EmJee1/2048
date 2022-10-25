@@ -5,7 +5,7 @@ import useGame from './hooks/use-game'
 import { Direction } from './types'
 
 const App = () => {
-  const { move, gameState } = useGame(4)
+  const { move, gameState, restart } = useGame(4)
   useKeydown('ArrowUp', move(Direction.Up))
   useKeydown('ArrowLeft', move(Direction.Left))
   useKeydown('ArrowDown', move(Direction.Down))
@@ -13,9 +13,12 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="my-4 text-center text-2xl font-bold text-stone-700">
+      <h1 className="mt-4 text-center text-2xl font-bold text-stone-700">
         2048
       </h1>
+      <div className="mt-2 mb-4 flex justify-center gap-4">
+        <button onClick={restart}>restart</button>
+      </div>
       <Grid>
         {gameState.map((cellValue, index) => (
           <Cell key={index} value={cellValue} />
