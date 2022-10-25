@@ -1,9 +1,8 @@
+import { isEqual } from 'lodash'
 import { useEffect, useState } from 'react'
-import { Direction, GameState } from '../types'
-import { getRandomEmptyIndexFromGameState } from '../utils/arrays'
+import { Direction } from '../types'
 import { moveGameState } from '../utils/move'
 import { generateInitialGameState } from '../utils/initial'
-import { isEqual } from 'lodash'
 import { retrieveGameState, storeGameState } from '../utils/persistent-storage'
 import { addRandomCellValueToGameState } from '../utils/cells'
 
