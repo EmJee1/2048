@@ -4,11 +4,13 @@ import { getRandomEmptyIndexFromGameState } from '../utils/arrays'
 import { moveGameState } from '../utils/move'
 import { generateInitialGameState } from '../utils/initial'
 import { isEqual } from 'lodash'
-import { storeGameState } from '../utils/persistent-storage'
+import { retrieveGameState, storeGameState } from '../utils/persistent-storage'
 import { addRandomCellValueToGameState } from '../utils/cells'
 
 const useGame = (columns: number) => {
-  const [gameState, setGameState] = useState(generateInitialGameState(columns))
+  const [gameState, setGameState] = useState(
+    retrieveGameState() || generateInitialGameState(columns)
+  )
 
   useEffect(() => {
     storeGameState(gameState)

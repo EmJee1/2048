@@ -1,5 +1,13 @@
-import { GAME_STATE_KEY, storeGameState } from '../persistent-storage'
+import {
+  GAME_STATE_KEY,
+  retrieveGameState,
+  storeGameState,
+} from '../persistent-storage'
 import { gameStateMocks } from './mocks'
+
+beforeEach(() => {
+  localStorage.clear()
+})
 
 describe('store-game-state', () => {
   test.each(gameStateMocks)('should write to localStorage', ({ initial }) => {
@@ -11,5 +19,19 @@ describe('store-game-state', () => {
       GAME_STATE_KEY,
       JSON.stringify(initial)
     )
+  })
+})
+
+describe('retrieve-game-state', () => {
+  test.each(gameStateMocks)(
+    'should retrieve correct game-state from localStorage',
+    ({ initial }) => {
+      storeGameState(initial)
+      expect(retrieveGameState()).toEqual(initial)
+    }
+  )
+
+  test('should return null if game-state is not saved', () => {
+    expect(retrieveGameState()).toBe(null)
   })
 })
